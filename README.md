@@ -2,15 +2,41 @@
 
 ## Project Overview
 
+This project aims to predict the volatility of Bitcoin using historical price data and various machine learning techniques. The goal is to develop a model that can accurately forecast future volatility, which can be valuable for traders, investors, and risk managers in the cryptocurrency market.
+
 ## Project Structure
+
+- `data/`: Contains the raw and processed datasets.
+- `notebooks/`: Jupyter notebooks for data exploration, modeling, and analysis.
+- `src/`: Source code for data preprocessing, model training, and evaluation.
 
 ## Project Problem Statement
 
+The cryptocurrency market is known for its high volatility, which can lead to significant financial risks for traders and investors. Accurately predicting Bitcoin's volatility can help market participants make informed decisions, manage risk, and optimize their trading strategies. This project seeks to develop a machine learning model that can forecast Bitcoin's volatility based on historical price data and other relevant features.
+
 ## Project Goals
+
+1. Collect and preprocess historical Bitcoin price data.
+2. Explore and analyze the data to identify patterns and relationships.
 
 ## Project Success Criteria
 
+- The model achieves a mean absolute error (MAE) of less than 0.05 on the test set.
+- The model demonstrates consistent performance across different time periods and market conditions.
+
+## Evaluation Metrics
+
+- MAE
+- RMSE
+
+## Dataset
+
+The dataset used in this project consists of historical Bitcoin price data, including features such as opening price, closing price, high, low, and trading volume. The data is sourced from [https://www.kaggle.com/datasets/priyamchoksi/bitcoin-historical-prices-and-activity-2010-] and covers a period from July 27, 2010, to May 22, 2024.
+
 ## Current Progress
+
+- Data collection and loading completed.
+- Initial data exploration and visualization performed.
 
 ## Testing
 
