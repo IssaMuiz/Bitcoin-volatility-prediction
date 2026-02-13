@@ -75,12 +75,7 @@ def range_of_motion(df: pd.DataFrame):
 
 def target_volatility(df: pd.DataFrame):
     """
-    Target volatility is implemented by applying a shift operation to the computed volatility series
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a 'Volatility' column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a volatility column returns the next day volatility.
+    parameters
     """
     try:
         df['Target_Volatility'] = df['Volatility'].shift(-1)
@@ -91,73 +86,34 @@ def target_volatility(df: pd.DataFrame):
         raise
     except Exception as e:
         print(
-            f"An error occurred during target_volatility feature creation: {e}")
+            f"An error occurred during target_volatility features creation: {e}")
         raise
 
 
 def lag_features(df: pd.DataFrame):
-    """Lag features implemented with volatility and log return.
-
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing 'Volatility' and 'Log_Return' columns.
-
-    Returns:
-    pd.DataFrame: The DataFrame with an additional 'Volatility_lag' and 'Log_Return_lag'columns"""
+    """Lag features"""
 
     try:
         for lag in [1, 2, 3, 5, 10]:
             df[f'Volatility_lag_{lag}'] = df['Volatility'].shift(lag)
-            df[f'Log_Return_lag_{lag}'] = df['Log_Return'].shift(lag)
+            df[f'Log_Return_{lag}'] = df['Log_Return'].shift(lag)
             print('Lag features created successfully')
             return df
     except KeyError:
         print("Error: Volatility and Log_Return columns are not found in the DataFrame.")
         raise
     except Exception as e:
-        print(f"An error occurred during lag feature creation: {e}")
+        print(f"An error occurred during lag features creation: {e}")
         raise
 
 
-def rolling_stat(df: pd.DataFrame):
+def rolling_window(df: pd.DataFrame):
     """
-    Include rolling averages and rolling standard deviations computed over fixed time windows
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a 'Volatility' column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a volatility column returns a rolling average and a rolling standard deviation features.
+    Params
     """
-    try:
-        for window in [5, 10, 20]:
-            df[f'Volatility_roll_mean_{window}'] = df['Volatility'].rolling(
-                window).mean()
-            df[f'Volatility_roll_std_{window}'] = df['Volatility'].rolling(
-                window).std()
-            return df
-    except KeyError:
-        print("Error: Volatility column not found in the DataFrame.")
-        raise
-    except Exception as e:
-        print(f"An error occurred during feature creation: {e}")
-        raise
 
-
-def log_transform(df: pd.DataFrame, column: str):
-    """
-    Log transformation converts price movement into relative percentage changes
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a price column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a log transform of the price column.
-    """
-    try:
-        df[f'log_{column}'] = np.log1p(df[column])
-        print(f"log transformation on {column} done successfully")
-        return df
-    except KeyError:
-        print("Error: {column} column not found in the DataFrame.")
-        raise
-    except Exception as e:
-        print(f"An error occurred log transformation: {e}")
-        raise
+    for window in [5, 10, 20]:
+        df[f'Volatility_roll_mean_{window}'] = df['Volatility'].rolling(
+            window).mean()
+        df[f'Volatility_roll_std_{window}'] = df['Volatility'].rolling(
+            window).std()

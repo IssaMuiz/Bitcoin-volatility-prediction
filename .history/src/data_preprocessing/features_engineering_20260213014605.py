@@ -102,7 +102,7 @@ def lag_features(df: pd.DataFrame):
     df (pd.DataFrame): The input DataFrame containing 'Volatility' and 'Log_Return' columns.
 
     Returns:
-    pd.DataFrame: The DataFrame with an additional 'Volatility_lag' and 'Log_Return_lag'columns"""
+    pd.DataFrame: The DataFrame with an additional 'Volatility_lag' and 'Log_Return'columns and return the series chosen in the lag"""
 
     try:
         for lag in [1, 2, 3, 5, 10]:
@@ -144,12 +144,12 @@ def rolling_stat(df: pd.DataFrame):
 
 def log_transform(df: pd.DataFrame, column: str):
     """
-    Log transformation converts price movement into relative percentage changes
+    Target volatility is implemented by applying a shift operation to the computed volatility series
     Parameters:
-    df (pd.DataFrame): The input DataFrame containing a price column.
+    df (pd.DataFrame): The input DataFrame containing a 'Volatility' column.
 
     Returns:
-    pd.DataFrame: The DataFrame with a log transform of the price column.
+    pd.DataFrame: The DataFrame with a volatility column returns the next day volatility.
     """
     try:
         df[f'log_{column}'] = np.log1p(df[column])

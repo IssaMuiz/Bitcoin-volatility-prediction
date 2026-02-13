@@ -1,6 +1,7 @@
 """
 Docstring for data_preprocessing.split_data
 """
+from sklearn.model_selection import train_test_split
 import pandas as pd
 
 
@@ -13,8 +14,8 @@ def split_data(df: pd.DataFrame):
     """
     try:
         n = len(df)
-        train_end = int(n * 0.6)
-        val_end = int(n * 0.8)
+        train_end = int(n * 0.7)
+        val_end = int(n * 0.85)
 
         train_df = df.iloc[:train_end]
         val_df = df.iloc[train_end:val_end]

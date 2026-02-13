@@ -75,12 +75,7 @@ def range_of_motion(df: pd.DataFrame):
 
 def target_volatility(df: pd.DataFrame):
     """
-    Target volatility is implemented by applying a shift operation to the computed volatility series
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a 'Volatility' column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a volatility column returns the next day volatility.
+    parameters
     """
     try:
         df['Target_Volatility'] = df['Volatility'].shift(-1)
@@ -96,13 +91,7 @@ def target_volatility(df: pd.DataFrame):
 
 
 def lag_features(df: pd.DataFrame):
-    """Lag features implemented with volatility and log return.
-
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing 'Volatility' and 'Log_Return' columns.
-
-    Returns:
-    pd.DataFrame: The DataFrame with an additional 'Volatility_lag' and 'Log_Return_lag'columns"""
+    """Lag features"""
 
     try:
         for lag in [1, 2, 3, 5, 10]:
@@ -120,12 +109,7 @@ def lag_features(df: pd.DataFrame):
 
 def rolling_stat(df: pd.DataFrame):
     """
-    Include rolling averages and rolling standard deviations computed over fixed time windows
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a 'Volatility' column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a volatility column returns a rolling average and a rolling standard deviation features.
+    Params
     """
     try:
         for window in [5, 10, 20]:
@@ -144,12 +128,7 @@ def rolling_stat(df: pd.DataFrame):
 
 def log_transform(df: pd.DataFrame, column: str):
     """
-    Log transformation converts price movement into relative percentage changes
-    Parameters:
-    df (pd.DataFrame): The input DataFrame containing a price column.
-
-    Returns:
-    pd.DataFrame: The DataFrame with a log transform of the price column.
+    Docstring for log transformation
     """
     try:
         df[f'log_{column}'] = np.log1p(df[column])
